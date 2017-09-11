@@ -1,4 +1,5 @@
 FROM alpine:3.6
+ENV EDITOR vi # For Elastic Beanstalk
 RUN apk -v --update add \
   python \
   py-pip \
