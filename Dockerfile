@@ -9,7 +9,7 @@ RUN apk -v --update add \
   openssh \
   git \
   && pip install --upgrade \
-  awscli==1.11.145 \
+  awscli==1.11.149 \
   s3cmd==2.0.0 \
   awsebcli==3.10.6 \
   python-magic \
