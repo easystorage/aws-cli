@@ -21,7 +21,7 @@ sed -i 's/\(\[awsebcli[^ ]\+ \)[^ ]\+/\1'${EB_VERSION}/ README.md
 docker build .
 VERSION_MESSAGE="alpine $ALPINE_VERSION, awscli $AWS_CLI_VERSION, s3cmd $S3CMD_VERSION, awsebcli $EB_VERSION"
 git tag -a $VERSION -m "$VERSION_MESSAGE"
-git commit -am "Release version $VERSION
+git commit -am "Release version $VERSION.
 
 $VERSION_MESSAGE"
 git push
