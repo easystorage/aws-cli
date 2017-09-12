@@ -1,13 +1,14 @@
 FROM alpine:3.6
 ENV EDITOR vi # For Elastic Beanstalk
 RUN apk -v --update add \
-  python \
-  py-pip \
+  git \
   groff \
+  jq \
   less \
   mailcap \
   openssh \
-  git \
+  py-pip \
+  python \
   && pip install --upgrade \
   awscli==1.11.149 \
   s3cmd==2.0.0 \

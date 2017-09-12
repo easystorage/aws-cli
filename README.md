@@ -8,6 +8,7 @@ An alpine based [docker image](https://hub.docker.com/r/eremite/aws-cli/) with A
 * git (for `eb init`)
 * ssh (for `eb ssh`)
 * python-magic (for `s3cmd`)
+* jq (for parsing json responses)
 
 ## Versioning
 
