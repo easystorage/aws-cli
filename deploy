@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-VERSION=1.1.6
-
 ALPINE_VERSION=3.6
-AWS_CLI_VERSION=1.11.158
+AWS_CLI_VERSION=1.11.162
 S3CMD_VERSION=2.0.0
-EB_VERSION=3.10.6
+EB_VERSION=3.11.0
+
+VERSION=1.2.0
 
 sed -i 's/\(alpine:\)[^ ]\+/\1'${ALPINE_VERSION}/ Dockerfile
 sed -i 's/\(awscli==\)[^ ]\+/\1'${AWS_CLI_VERSION}/ Dockerfile
