@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.7
 ENV EDITOR vi # For Elastic Beanstalk
 RUN apk -v --update add \
   ca-certificates \
@@ -13,7 +13,7 @@ RUN apk -v --update add \
   python \
   && update-ca-certificates \
   && pip install --upgrade \
-  awscli==1.12.2 \
+  awscli==1.14.2 \
   s3cmd==2.0.1 \
   awsebcli==3.12.1 \
   python-magic \
