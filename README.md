@@ -18,6 +18,6 @@ versions to be incremented.
 Current version: 1.5.4
 
 * [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.7
-* [aws-cli](https://github.com/aws/aws-cli/releases) 1.14.24
+* [aws-cli](https://github.com/aws/aws-cli/releases) 1.14.32
 * [s3cmd](https://github.com/s3tools/s3cmd/releases) 2.0.1
 * [awsebcli](https://pypi.python.org/pypi/awsebcli/) 3.12.1
