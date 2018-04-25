@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+BIN=$(dirname "$0")
+source "$BIN/envvars"
+
+run() {
+  docker run --rm eremite/aws-cli:$VERSION $@ &> /dev/null
+}
+
+check() {
+  printf "Checking $1..."
+  run $@
+  if [ "$?" -eq 0 ]; then
+    echo "OK"
+  else
+    echo "FAILED!"
+    run $@
+    exit 1
+  fi
+}
+
+check aws --version
+check eb --version
+check s3cmd --version
+
+exit 0

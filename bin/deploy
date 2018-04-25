@@ -1,11 +1,7 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-ALPINE_VERSION=3.7
-AWS_CLI_VERSION=1.15.7
-S3CMD_VERSION=2.0.1
-EB_VERSION=3.12.4
-
-VERSION=1.6.0
+BIN=$(dirname "$0")
+source "$BIN/envvars"
 
 sed -i 's/\(alpine:\)[^ ]\+/\1'${ALPINE_VERSION}/ Dockerfile
 sed -i 's/\(awscli==\)[^ ]\+/\1'${AWS_CLI_VERSION}/ Dockerfile
@@ -18,7 +14,9 @@ sed -i 's/\(\[aws-cli[^ ]\+ \)[^ ]\+/\1'${AWS_CLI_VERSION}/ README.md
 sed -i 's/\(\[s3cmd[^ ]\+ \)[^ ]\+/\1'${S3CMD_VERSION}/ README.md
 sed -i 's/\(\[awsebcli[^ ]\+ \)[^ ]\+/\1'${EB_VERSION}/ README.md
 
-docker build --pull .
+docker build --pull --tag eremite/aws-cli:$VERSION .
+$BIN/test
+[ "$?" -ne 0 ] && exit 1
 VERSION_MESSAGE="alpine $ALPINE_VERSION, awscli $AWS_CLI_VERSION, s3cmd $S3CMD_VERSION, awsebcli $EB_VERSION"
 git tag -a $VERSION -m "$VERSION_MESSAGE"
 git commit -am "Release version $VERSION.
