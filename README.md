@@ -15,7 +15,7 @@ An alpine based [docker image](https://hub.docker.com/r/eremite/aws-cli/) with A
 Starting at 1.1.1, any change to the following will trigger the corresponding major, minor and patch
 versions to be incremented.
 
-Current version: 1.6.0
+Current version: 1.6.1
 
 * [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.7
 * [aws-cli](https://github.com/aws/aws-cli/releases) 1.15.7
