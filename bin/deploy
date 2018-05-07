@@ -5,19 +5,21 @@ source "$BIN/envvars"
 
 sed -i 's/\(alpine:\)[^ ]\+/\1'${ALPINE_VERSION}/ Dockerfile
 sed -i 's/\(awscli==\)[^ ]\+/\1'${AWS_CLI_VERSION}/ Dockerfile
-sed -i 's/\(s3cmd==\)[^ ]\+/\1'${S3CMD_VERSION}/ Dockerfile
 sed -i 's/\(awsebcli==\)[^ ]\+/\1'${EB_VERSION}/ Dockerfile
+sed -i 's/\(pip==\)[^ ]\+/\1'${PIP_VERSION}/ Dockerfile
+sed -i 's/\(s3cmd==\)[^ ]\+/\1'${S3CMD_VERSION}/ Dockerfile
 
 sed -i 's/\(Current version: \)[^ ]\+/\1'${VERSION}/ README.md
 sed -i 's/\(\[alpine[^ ]\+ \)[^ ]\+/\1'${ALPINE_VERSION}/ README.md
 sed -i 's/\(\[aws-cli[^ ]\+ \)[^ ]\+/\1'${AWS_CLI_VERSION}/ README.md
-sed -i 's/\(\[s3cmd[^ ]\+ \)[^ ]\+/\1'${S3CMD_VERSION}/ README.md
 sed -i 's/\(\[awsebcli[^ ]\+ \)[^ ]\+/\1'${EB_VERSION}/ README.md
+sed -i 's/\(\[s3cmd[^ ]\+ \)[^ ]\+/\1'${S3CMD_VERSION}/ README.md
+sed -i 's/\(\[pip[^ ]\+ \)[^ ]\+/\1'${PIP_VERSION}/ README.md
 
 docker build --pull --tag eremite/aws-cli:$VERSION .
 $BIN/test
 [ "$?" -ne 0 ] && exit 1
-VERSION_MESSAGE="alpine $ALPINE_VERSION, awscli $AWS_CLI_VERSION, s3cmd $S3CMD_VERSION, awsebcli $EB_VERSION"
+VERSION_MESSAGE="alpine $ALPINE_VERSION, awscli $AWS_CLI_VERSION, awsebcli $EB_VERSION, s3cmd $S3CMD_VERSION, pip $PIP_VERSION"
 git tag -a $VERSION -m "$VERSION_MESSAGE"
 git commit -am "Release version $VERSION.
 

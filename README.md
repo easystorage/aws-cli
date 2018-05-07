@@ -12,12 +12,13 @@ An alpine based [docker image](https://hub.docker.com/r/eremite/aws-cli/) with A
 
 ## Versioning
 
-Starting at 1.1.1, any change to the following will trigger the corresponding major, minor and patch
-versions to be incremented.
+Any change to the following will trigger the corresponding major, minor and patch versions to be
+incremented.
 
-Current version: 1.6.2
+Current version: 2.0.0
 
 * [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.7
-* [aws-cli](https://github.com/aws/aws-cli/releases) 1.15.10
-* [s3cmd](https://github.com/s3tools/s3cmd/releases) 2.0.1
+* [aws-cli](https://github.com/aws/aws-cli/releases) 1.15.14
 * [awsebcli](https://pypi.python.org/pypi/awsebcli/) 3.12.4
+* [pip](https://pip.pypa.io/en/stable/news/) 10.0.1
+* [s3cmd](https://github.com/s3tools/s3cmd/releases) 2.0.1
