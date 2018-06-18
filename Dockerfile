@@ -14,9 +14,8 @@ RUN apk -v --update add \
   && update-ca-certificates \
   && pip install --upgrade \
   pip==10.0.1 \
-  awscli==1.15.35 \
+  awscli==1.15.40 \
   s3cmd==2.0.1 \
-  awsebcli==3.14.0 \
-  colorama==0.3.7 \
+  awsebcli==3.14.1 \
   python-magic \
   && rm /var/cache/apk/*
