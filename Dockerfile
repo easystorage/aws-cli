@@ -15,8 +15,8 @@ RUN apk -v --update add \
   && pip install --upgrade \
   urllib3==1.22 \
   pip==18.0 \
-  awscli==1.15.81 \
+  awscli==1.16.9 \
   s3cmd==2.0.2 \
-  awsebcli==3.14.4 \
+  awsebcli==3.14.5 \
   python-magic \
   && rm /var/cache/apk/*

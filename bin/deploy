@@ -23,6 +23,7 @@ VERSION_MESSAGE="alpine $ALPINE_VERSION, awscli $AWS_CLI_VERSION, awsebcli $EB_V
 git tag -a $VERSION -m "$VERSION_MESSAGE"
 git commit -am "Release version $VERSION.
 
-$VERSION_MESSAGE"
+$VERSION_MESSAGE
+"
 git push
 git push --tags
