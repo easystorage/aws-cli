@@ -13,6 +13,7 @@ RUN apk -v --update add \
   python \
   && update-ca-certificates \
   && pip install --upgrade \
+  urllib3==1.22 \
   pip==18.0 \
   awscli==1.15.81 \
   s3cmd==2.0.2 \
