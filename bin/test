@@ -2,7 +2,7 @@
 
 set -ex
 BIN=$(dirname "$0")
-source "$BIN/envvars"
+. "$BIN/envvars"
 
 run() {
   docker run --rm eremite/aws-cli:$VERSION $@ &> /dev/null
