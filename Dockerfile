@@ -14,7 +14,7 @@ RUN apk -v --update add \
   && update-ca-certificates \
   && pip install --upgrade \
   pip==18.1 \
-  awscli==1.16.81 \
+  awscli==1.16.84 \
   s3cmd==2.0.2 \
   awsebcli==3.14.8 \
   python-magic \
