@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
-export VERSION=2019.01.09
+export VERSION=2019.01.14
 
 export ALPINE_VERSION=3.8
-export AWS_CLI_VERSION=1.16.84
-export EB_VERSION=3.14.8
+export AWS_CLI_VERSION=1.16.88
+export EB_VERSION=3.14.9
 export PIP_VERSION=18.1
 export S3CMD_VERSION=2.0.2
