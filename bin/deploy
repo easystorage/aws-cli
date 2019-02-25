@@ -27,3 +27,4 @@ $VERSION_MESSAGE
 "
 git push
 git push --tags
+docker push eremite/aws-cli:$VERSION
