@@ -17,7 +17,7 @@ The version is determined by the date of each release.
 Current version: 2019.02.11
 
 * [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.9
-* [aws-cli](https://github.com/aws/aws-cli/releases) 1.16.101
+* [aws-cli](https://github.com/aws/aws-cli/releases) 1.16.111
 * [awsebcli](https://pypi.python.org/pypi/awsebcli/#history) 3.14.11
-* [pip](https://pip.pypa.io/en/stable/news/) 19.0.2
+* [pip](https://pip.pypa.io/en/stable/news/) 19.0.3
 * [s3cmd](https://github.com/s3tools/s3cmd/releases) 2.0.2
