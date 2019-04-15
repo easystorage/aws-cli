@@ -14,9 +14,9 @@ An alpine based [docker image](https://hub.docker.com/r/eremite/aws-cli/) with A
 
 The version is determined by the date of each release.
 
-Current version: 2019.04.08
+Current version: 2019.04.15
 
-* [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.9.2
+* [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.9.3
 * [aws-cli](https://github.com/aws/aws-cli/releases) 1.16.140
 * [awsebcli](https://pypi.python.org/pypi/awsebcli/#history) 3.15.0
 * [pip](https://pip.pypa.io/en/stable/news/) 19.0.3

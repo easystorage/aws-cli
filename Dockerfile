@@ -1,4 +1,4 @@
-FROM alpine:3.9.2
+FROM alpine:3.9.3
 ENV EDITOR vi # For Elastic Beanstalk
 RUN apk -v --update add \
   ca-certificates \
