@@ -13,6 +13,7 @@ RUN apk -v --update add \
   python \
   && update-ca-certificates \
   && pip install --upgrade \
+  pyyaml==3.13 \
   pip==19.1.1 \
   awscli==1.16.194 \
   s3cmd==2.0.2 \
