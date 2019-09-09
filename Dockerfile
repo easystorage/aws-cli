@@ -15,7 +15,7 @@ RUN apk -v --update add \
   && pip install --upgrade \
   pyyaml==3.13 \
   pip==19.2.3 \
-  awscli==1.16.230 \
+  awscli==1.16.234 \
   s3cmd==2.0.2 \
   awsebcli==3.15.3 \
   python-magic \
