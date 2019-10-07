@@ -18,5 +18,6 @@ RUN apk -v --update add \
   awscli==1.16.253 \
   s3cmd==2.0.2 \
   awsebcli==3.15.3 \
+  colorama==0.3.9 \
   python-magic \
   && rm /var/cache/apk/*
