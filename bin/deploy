@@ -17,6 +17,7 @@ sed -i 's/\(\[s3cmd[^ ]\+ \)[^ ]\+/\1'${S3CMD_VERSION}/ README.md
 sed -i 's/\(\[pip[^ ]\+ \)[^ ]\+/\1'${PIP_VERSION}/ README.md
 
 docker build --pull --tag eremite/aws-cli:$VERSION .
+[ "$?" -ne 0 ] && exit 1
 $BIN/test
 [ "$?" -ne 0 ] && exit 1
 VERSION_MESSAGE="alpine $ALPINE_VERSION, awscli $AWS_CLI_VERSION, awsebcli $EB_VERSION, s3cmd $S3CMD_VERSION, pip $PIP_VERSION"
