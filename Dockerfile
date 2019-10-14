@@ -14,8 +14,8 @@ RUN apk -v --update add \
   && update-ca-certificates \
   && pip install --upgrade \
   pyyaml==3.13 \
-  pip==19.2.3 \
-  awscli==1.16.253 \
+  pip==19.3 \
+  awscli==1.16.258 \
   s3cmd==2.0.2 \
   awsebcli==3.15.3 \
   colorama==0.3.9 \
