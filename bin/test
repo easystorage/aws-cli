@@ -5,7 +5,7 @@ BIN=$(dirname "$0")
 . "$BIN/envvars"
 
 run() {
-  docker run --rm eremite/aws-cli:$VERSION $@ &> /dev/null
+  docker run --rm custombit/aws-cli:$VERSION $@ &> /dev/null
 }
 
 check() {

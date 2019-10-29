@@ -1,6 +1,6 @@
-# eremite/aws-cli
+# easystorage/aws-cli
 
-An alpine based [docker image](https://hub.docker.com/r/eremite/aws-cli/) with AWS tools including:
+An alpine based [docker image](https://hub.docker.com/r/custombit/aws-cli/) with AWS tools including:
 
 * aws
 * eb
