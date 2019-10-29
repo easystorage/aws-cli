@@ -14,7 +14,7 @@ sed -i 's/\(\[aws-cli[^ ]\+ \)[^ ]\+/\1'${AWS_CLI_VERSION}/ README.md
 sed -i 's/\(\[awsebcli[^ ]\+ \)[^ ]\+/\1'${EB_VERSION}/ README.md
 sed -i 's/\(\[s3cmd[^ ]\+ \)[^ ]\+/\1'${S3CMD_VERSION}/ README.md
 
-docker build --pull --tag custombit/aws-cli:$VERSION .
+docker build --pull --tag custombit/aws-cli:$VERSION --tag custombit/aws-cli:latest .
 [ "$?" -ne 0 ] && exit 1
 $BIN/test
 [ "$?" -ne 0 ] && exit 1
@@ -27,3 +27,4 @@ $VERSION_MESSAGE
 git push
 git push --tags
 docker push custombit/aws-cli:$VERSION
+docker push custombit/aws-cli:latest
