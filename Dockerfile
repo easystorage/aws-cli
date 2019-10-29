@@ -12,13 +12,16 @@ RUN apk -v --update add \
   py-pip \
   python \
   && update-ca-certificates \
-  && pip install --upgrade \
-  pyyaml==3.13 \
-  pip==19.3.1 \
-  awscli==1.16.268 \
-  colorama==0.3.9 \
-  botocore==1.12.29 \
-  s3cmd==2.0.2 \
-  awsebcli==3.15.3 \
-  python-magic \
   && rm /var/cache/apk/*
+RUN pip install --upgrade awscli --target /usr/local/lib/awscli \
+  && printf '#!/bin/sh\nPYTHONPATH=/usr/local/lib/awscli /usr/local/lib/awscli/bin/aws "$@"\n' \
+  > /usr/local/bin/aws \
+  && chmod +x /usr/local/bin/aws
+RUN pip install --upgrade awsebcli --target /usr/local/lib/awsebcli \
+  && printf '#!/bin/sh\nPYTHONPATH=/usr/local/lib/awsebcli /usr/local/lib/awsebcli/bin/eb "$@"\n' \
+  > /usr/local/bin/eb \
+  && chmod +x /usr/local/bin/eb
+RUN pip install --upgrade s3cmd --target /usr/local/lib/s3cmd \
+  && printf '#!/bin/sh\nPYTHONPATH=/usr/local/lib/s3cmd /usr/local/lib/s3cmd/bin/s3cmd "$@"\n' \
+  > /usr/local/bin/s3cmd \
+  && chmod +x /usr/local/bin/s3cmd
