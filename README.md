@@ -14,10 +14,10 @@ An alpine based [docker image](https://hub.docker.com/r/custombit/aws-cli/) with
 
 The version is determined by the date of each release.
 
-Current version: 2019.12.16
+Current version: 2019.12.30
 
-* [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.11.0
-* [aws-cli](https://github.com/aws/aws-cli/releases) 1.16.308
+* [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.11.2
+* [aws-cli](https://github.com/aws/aws-cli/releases) 1.16.309
 * [awsebcli](https://pypi.python.org/pypi/awsebcli/#history) 3.17.0
 * [s3cmd](https://github.com/s3tools/s3cmd/releases) 2.0.2
 

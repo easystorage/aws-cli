@@ -1,4 +1,4 @@
-FROM alpine:3.11.0
+FROM alpine:3.11.2
 ENV EDITOR vi # For Elastic Beanstalk
 RUN apk -v --update add \
   ca-certificates \
@@ -13,7 +13,7 @@ RUN apk -v --update add \
   python \
   && update-ca-certificates \
   && rm /var/cache/apk/*
-RUN pip install --upgrade awscli==1.16.308 --target /usr/local/lib/awscli \
+RUN pip install --upgrade awscli==1.16.309 --target /usr/local/lib/awscli \
   && printf '#!/bin/sh\nPYTHONPATH=/usr/local/lib/awscli /usr/local/lib/awscli/bin/aws "$@"\n' \
   > /usr/local/bin/aws \
   && chmod +x /usr/local/bin/aws
