@@ -8,7 +8,7 @@ on: push
 jobs:
   create_pull_request_to_production:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged
+    # if: github.event.pull_request.merged
     steps:
       - uses: actions/github-script@0.8.0
         with:
