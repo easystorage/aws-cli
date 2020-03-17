@@ -7,9 +7,11 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            const staging_pull_request = await github.pulls.get({
+            const response = await github.pulls.get({
               owner: 'easystorage',
               repo: 'aws-cli',
               pull_number: 37
             })
+            const staging_pull_request = response.data
             console.log(staging_pull_request)
+            console.log(staging_pull_request.assignees)
