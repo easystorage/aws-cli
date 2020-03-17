@@ -24,6 +24,7 @@ jobs:
               base: 'master',
               body: staging_pull_request.body
             }).then(({ data, headers, status }) => {
+              console.log('data', data)
               let production_pull_request = data.production_pull_request
               console.log('production_pull_request', production_pull_request)
               github.pulls.createReviewRequest({
@@ -41,4 +42,7 @@ jobs:
                 assignees: staging_pull_request.assignees
               })
               console.log('Finished')
-            }).catch(error => console.log('error', error))
+            }).catch(error => {
+              console.log(error)
+              console.log('The error is', error.substring(0, 50))
+            })

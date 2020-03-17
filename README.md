@@ -23,7 +23,6 @@ The version is determined by the date of each release.
 
 ## Usage Examples
 
-### List IAM users
 
 `docker run -e AWS_ACCESS_KEY_ID=KEY -e AWS_SECRET_ACCESS_KEY=SECRET custombit/aws-cli aws iam list-users`
 
