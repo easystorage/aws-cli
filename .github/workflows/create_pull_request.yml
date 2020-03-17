@@ -13,8 +13,8 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            console.log(context)
             const staging_pull_request = context.payload.pull_request
+            console.log('staging_pull_request.head', staging_pull_request.head, 'staging_pull_request.base', staging_pull_request.base)
             let response = null
             try {
               response = await github.pulls.create({
