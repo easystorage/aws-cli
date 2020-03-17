@@ -21,7 +21,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
-                head: context.ref,
+                head: staging_pull_request.head.ref,
                 base: 'master',
                 body: staging_pull_request.body
               })
