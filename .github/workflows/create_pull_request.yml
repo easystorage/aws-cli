@@ -13,8 +13,9 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
+            console.log('comment in branch')
             const staging_pull_request = context.payload.pull_request
-            const production_pull_request = await github.pulls.create({
+            const { data: production_pull_request } = await github.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
@@ -23,15 +24,16 @@ jobs:
               body: staging_pull_request.body
             })
             console.log(production_pull_request)
-            github.pulls.createReviewRequest({
+            const response = github.pulls.createReviewRequest({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: production_pull_request.number,
               reviewers: ['aprice14']
             })
+            console.log(response)
             github.issues.addAssignees({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: production_pull_request.number,
+              issue_number: production_pull_request.number,
               assignees: staging_pull_request.assignees
             })
