@@ -13,7 +13,7 @@ jobs:
               pull_number: 37
             })
             const staging_pull_request = response.data
-            let response = await github.pulls.get({
+            response = await github.pulls.get({
               owner: 'easystorage',
               repo: 'aws-cli',
               pull_number: 38
