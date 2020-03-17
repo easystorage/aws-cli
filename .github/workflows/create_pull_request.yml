@@ -40,6 +40,6 @@ jobs:
                 assignees: staging_pull_request.assignees
               })
               console.log('Finished')
-            }).catch(({ resource, code, message }) => {
-              console.log('The error is', message)
+            }).catch(({ resource, status, error }) => {
+              console.log('The error is', error.message)
             })
