@@ -16,33 +16,29 @@ jobs:
             const staging_pull_request = context.payload.pull_request
             console.log('staging_pull_request.head', staging_pull_request.head, 'staging_pull_request.base', staging_pull_request.base)
             let response = null
-            try {
-              response = await github.pulls.create({
+            response = await github.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
+              head: staging_pull_request.head.ref,
+              base: 'master',
+              body: staging_pull_request.body
+            }).then(({ production_pull_request, headers, status }) => {
+              console.log('headers', headers, 'status', status)
+              console.log('production_pull_request', production_pull_request)
+              github.pulls.createReviewRequest({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
-                head: staging_pull_request.head.ref,
-                base: 'master',
-                body: staging_pull_request.body
+                pull_number: production_pull_request.number,
+                reviewers: ['custombitbot']
+              }).then(({ data, headers, status }) => {
+                console.log('Created ReviewRequest', 'data', data, 'headers', headers, 'status', status)
+              });
+              github.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: production_pull_request.number,
+                assignees: staging_pull_request.assignees
               })
-            } catch (error) {
-              console.log(error)
-            }
-            console.log('response', response)
-            const production_pull_request = response.data
-            console.log('production_pull_request', production_pull_request)
-            github.pulls.createReviewRequest({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: production_pull_request.number,
-              reviewers: ['custombitbot']
-            }).then(({ data, headers, status }) => {
-              console.log('data', data, 'headers', headers, 'status', status)
-            });
-            github.issues.addAssignees({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: production_pull_request.number,
-              assignees: staging_pull_request.assignees
-            })
-            console.log('Finished')
+              console.log('Finished')
+            }).catch(error => console.log('error', error))
