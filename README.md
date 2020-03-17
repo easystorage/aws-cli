@@ -33,7 +33,6 @@ The version is determined by the date of each release.
 
 ```bash
 sudo chmod 600 .ssh.key
-export AWS_ACCESS_KEY_ID=KEY
 export AWS_SECRET_ACCESS_KEY=SECRET
 eb_environment="my-environment"
 docker run -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -v "$PWD:/app" -w "/app" custombit/aws-cli eb ssh ${eb_environment} --custom 'ssh -i /app/.ssh.key -o StrictHostKeyChecking=no'
