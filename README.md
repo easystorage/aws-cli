@@ -27,7 +27,6 @@ Current version: 2020.01.27
 
 `docker run -e AWS_ACCESS_KEY_ID=KEY -e AWS_SECRET_ACCESS_KEY=SECRET custombit/aws-cli aws iam list-users`
 
-### S3cmd sync
 
 `docker run -e AWS_ACCESS_KEY_ID=KEY -e AWS_SECRET_ACCESS_KEY=SECRET -v "$PWD:/app" -w "/app" custombit/aws-cli s3cmd sync /app/ s3://bucket/path/`
 
