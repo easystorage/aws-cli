@@ -13,11 +13,25 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            github.pulls.create({
+            const staging_pull_request = context.payload.pull_request
+            const production_pull_request = await github.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: context.payload.pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
+              title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
               head: context.ref,
               base: 'master',
-              body: context.payload.pull_request.body
+              body: staging_pull_request.body
+            })
+            console.log(production_pull_request)
+            github.pulls.createReviewRequest({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: production_pull_request.number,
+              reviewers: ['aprice14']
+            })
+            github.issues.addAssignees({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: production_pull_request.number,
+              assignees: staging_pull_request.assignees
             })
