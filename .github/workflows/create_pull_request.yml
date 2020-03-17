@@ -14,4 +14,4 @@ jobs:
             })
             const staging_pull_request = response.data
             console.log(staging_pull_request)
-            console.log(staging_pull_request.assignees)
+            console.log(staging_pull_request.assignees.map((user) => { return user.login }))
