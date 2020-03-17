@@ -10,6 +10,6 @@ jobs:
             const staging_pull_request = await github.pulls.get({
               owner: 'easystorage',
               repo: 'aws-cli',
-              number: 37
+              pull_number: 37
             })
             console.log(staging_pull_request.assignees)
