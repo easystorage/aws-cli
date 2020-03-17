@@ -32,7 +32,6 @@ The version is determined by the date of each release.
 ### SSH into an Elastic Beanstalk instance
 
 ```bash
-echo "-----BEGIN RSA PRIVATE KEY-----...." > .ssh.key
 sudo chmod 600 .ssh.key
 export AWS_ACCESS_KEY_ID=KEY
 export AWS_SECRET_ACCESS_KEY=SECRET
