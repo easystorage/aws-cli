@@ -13,15 +13,15 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            console.log(context)
             const staging_pull_request = context.payload.pull_request
+            console.log('staging_pull_request.head', staging_pull_request.head, 'staging_pull_request.base', staging_pull_request.base)
             let response = null
             try {
               response = await github.pulls.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
-                head: context.ref,
+                head: staging_pull_request.head.ref,
                 base: 'master',
                 body: staging_pull_request.body
               })
