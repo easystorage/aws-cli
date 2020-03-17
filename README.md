@@ -1,6 +1,6 @@
 # easystorage/aws-cli
 
-This is test 1.
+This is test 2.
 
 An alpine based [docker image](https://hub.docker.com/r/custombit/aws-cli/) with AWS tools including:
 
