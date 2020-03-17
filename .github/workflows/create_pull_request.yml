@@ -14,11 +14,3 @@ jobs:
         with:
           script: |
             console.log(context)
-            github.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: context.payload.pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
-              head: context.ref,
-              base: 'master',
-              body: context.event.pull_request.body
-            })
