@@ -15,7 +15,7 @@ jobs:
           script: |
             console.log('comment in branch')
             const staging_pull_request = context.payload.pull_request
-            const { data: production_pull_request } = await github.pulls.create({
+            const response = await github.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
@@ -23,12 +23,14 @@ jobs:
               base: 'master',
               body: staging_pull_request.body
             })
+            console.log(response)
+            const production_pull_request = response.data
             console.log(production_pull_request)
             const response = github.pulls.createReviewRequest({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: production_pull_request.number,
-              reviewers: ['aprice14']
+              reviewers: ['custombitbot']
             })
             console.log(response)
             github.issues.addAssignees({
