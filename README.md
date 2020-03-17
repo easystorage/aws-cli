@@ -12,8 +12,6 @@ An alpine based [docker image](https://hub.docker.com/r/custombit/aws-cli/) with
 
 ## Versioning
 
-The version is determined by the date of each release.
-
 Current version: 2020.01.27
 
 * [alpine](https://hub.docker.com/r/library/alpine/tags/) 3.11.3
