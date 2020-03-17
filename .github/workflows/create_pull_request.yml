@@ -7,11 +7,25 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            const response = await github.pulls.get({
+            let response = await github.pulls.get({
               owner: 'easystorage',
               repo: 'aws-cli',
               pull_number: 37
             })
             const staging_pull_request = response.data
-            console.log(staging_pull_request)
-            console.log(staging_pull_request.assignees.map((user) => { return user.login }))
+            let response = await github.pulls.get({
+              owner: 'easystorage',
+              repo: 'aws-cli',
+              pull_number: 38
+            })
+            const production_pull_request = response.data
+            github.issues.addAssignees({
+              owner: 'easystorage',
+              repo: 'aws-cli',
+              issue_number: production_pull_request.number,
+              assignees: staging_pull_request.assignees.map((user) => { return user.login })
+            }).then(({ data, headers, status }) => {
+              console.log('Assignees', 'data', data, 'headers', headers, 'status', status)
+            }).catch(({ resource, status, error }) => {
+              console.log('The assignee is', error.message)
+            })
