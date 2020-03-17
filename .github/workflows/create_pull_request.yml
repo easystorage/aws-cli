@@ -12,4 +12,4 @@ jobs:
               repo: 'aws-cli',
               pull_number: 37
             })
-            console.log(staging_pull_request.assignees)
+            console.log(staging_pull_request)
