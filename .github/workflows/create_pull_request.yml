@@ -13,16 +13,21 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            console.log('comment in branch')
+            console.log(context)
             const staging_pull_request = context.payload.pull_request
-            const response = await github.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
-              head: context.ref,
-              base: 'master',
-              body: staging_pull_request.body
-            })
+            let response = null
+            try {
+              response = await github.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
+                head: context.ref,
+                base: 'master',
+                body: staging_pull_request.body
+              })
+            } catch (error) {
+              console.log(error)
+            }
             console.log('response', response)
             const production_pull_request = response.data
             console.log('production_pull_request', production_pull_request)
@@ -40,4 +45,4 @@ jobs:
               issue_number: production_pull_request.number,
               assignees: staging_pull_request.assignees
             })
-            console.log('finished')
+            console.log('Finished')
