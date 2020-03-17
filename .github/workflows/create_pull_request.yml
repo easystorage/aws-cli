@@ -23,19 +23,21 @@ jobs:
               base: 'master',
               body: staging_pull_request.body
             })
-            console.log(response)
+            console.log('response', response)
             const production_pull_request = response.data
-            console.log(production_pull_request)
-            const response = github.pulls.createReviewRequest({
+            console.log('production_pull_request', production_pull_request)
+            github.pulls.createReviewRequest({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: production_pull_request.number,
               reviewers: ['custombitbot']
-            })
-            console.log(response)
+            }).then(({ data, headers, status }) => {
+              console.log('data', data, 'headers', headers, 'status', status)
+            });
             github.issues.addAssignees({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: production_pull_request.number,
               assignees: staging_pull_request.assignees
             })
+            console.log('finished')
