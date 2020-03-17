@@ -13,4 +13,11 @@ jobs:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            console.log(context)
+            github.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: context.payload.pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
+              head: context.ref,
+              base: 'master',
+              body: context.payload.pull_request.body
+            })
