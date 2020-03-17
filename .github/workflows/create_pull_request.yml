@@ -23,8 +23,8 @@ jobs:
               head: head,
               base: 'master',
               body: staging_pull_request.body
-            }).then(({ production_pull_request, headers, status }) => {
-              console.log('headers', headers, 'status', status)
+            }).then(({ data, headers, status }) => {
+              let production_pull_request = data.production_pull_request
               console.log('production_pull_request', production_pull_request)
               github.pulls.createReviewRequest({
                 owner: context.repo.owner,
