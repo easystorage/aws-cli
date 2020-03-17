@@ -1,5 +1,7 @@
 # easystorage/aws-cli
 
+This is the staging branch.
+
 An alpine based [docker image](https://hub.docker.com/r/custombit/aws-cli/) with AWS tools including:
 
 * aws
