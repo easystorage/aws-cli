@@ -29,5 +29,6 @@ jobs:
             }).then(({ data, headers, status }) => {
               console.log('created!')
             }).catch((data) => {
-              console.log(data)
+              console.log(data.errors)
+              console.log(data.errors[0].message)
             })
