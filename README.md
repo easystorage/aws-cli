@@ -41,3 +41,7 @@ export AWS_SECRET_ACCESS_KEY=SECRET
 eb_environment="my-environment"
 docker run -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -v "$PWD:/app" -w "/app" custombit/aws-cli eb ssh ${eb_environment} --custom 'ssh -i /app/.ssh.key -o StrictHostKeyChecking=no'
 ```
+
+## Staging
+
+There is a staging branch for testing Github Actions.
