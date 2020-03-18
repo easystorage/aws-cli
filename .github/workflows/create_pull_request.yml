@@ -29,6 +29,7 @@ jobs:
             }).then(({ data, headers, status }) => {
               console.log('created!')
             }).catch((data) => {
+              console.log(data)
               if (data.errors[0].message.startsWith('A pull request already exists')) {
                 console.log('exists')
                 github.issues.removeLabel({
