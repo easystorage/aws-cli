@@ -29,6 +29,13 @@ jobs:
             }).then(({ data, headers, status }) => {
               console.log('created!')
             }).catch((data) => {
-              console.log(data.errors)
-              console.log(data.errors[0].message)
+              if (data.errors[0].message.startsWith('A pull request already exists')) {
+                console.log('exists')
+                github.issues.removeLabel({
+                  owner: 'easystorage',
+                  repo: 'aws-cli',
+                  issue_number: 38,
+                  name: 'In Progress'
+                });
+              }
             })
