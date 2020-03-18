@@ -19,13 +19,18 @@ jobs:
               pull_number: 38
             })
             const production_pull_request = response.data
-            github.issues.addAssignees({
+            github.pulls.create({
               owner: 'easystorage',
               repo: 'aws-cli',
-              issue_number: production_pull_request.number,
-              assignees: staging_pull_request.assignees.map((user) => { return user.login })
+              title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
+              head: 'ga-test11',
+              base: 'master',
+              body: staging_pull_request.body
             }).then(({ data, headers, status }) => {
-              console.log('Assignees', 'data', data, 'headers', headers, 'status', status)
+              console.log('created!')
             }).catch(({ resource, status, error }) => {
-              console.log('The assignee is', error.message)
+              console.log('The error is', error.message)
+              if (error.message.startsWith('A pull request already exists')) {
+                console.log('reopen')
+              }
             })
