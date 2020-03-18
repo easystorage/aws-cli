@@ -1,41 +1,40 @@
-on: push
+on:
+  pull_request:
+    branches:
+      - staging
+    types:
+      - closed
 
 jobs:
   create_pull_request_to_production:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
     steps:
       - uses: actions/github-script@0.8.0
         with:
           script: |
-            let response = await github.pulls.get({
-              owner: 'easystorage',
-              repo: 'aws-cli',
-              pull_number: 37
-            })
-            const staging_pull_request = response.data
-            response = await github.pulls.get({
-              owner: 'easystorage',
-              repo: 'aws-cli',
-              pull_number: 38
-            })
-            const production_pull_request = response.data
+            const staging_pull_request = context.payload.pull_request
             github.pulls.create({
-              owner: 'easystorage',
-              repo: 'aws-cli',
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               title: staging_pull_request.title.replace(/deploy to staging/i, 'Deploy to Production'),
-              head: 'ga-test11',
+              head: staging_pull_request.head.ref,
               base: 'master',
               body: staging_pull_request.body
             }).then(({ data, headers, status }) => {
-              console.log('created!')
+              let production_pull_request = data
+              github.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: production_pull_request.number,
+                assignees: staging_pull_request.assignees.map((user) => { return user.login })
+              })
             }).catch((data) => {
-              console.log(data)
               if (data.errors[0].message.startsWith('A pull request already exists')) {
-                console.log('exists')
                 github.issues.removeLabel({
-                  owner: 'easystorage',
-                  repo: 'aws-cli',
-                  issue_number: 38,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: production_pull_request.number,
                   name: 'In Progress'
                 });
               }
