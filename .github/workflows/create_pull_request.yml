@@ -45,6 +45,8 @@ jobs:
                     repo: context.repo.repo,
                     pull_number: production_pull_request.number,
                     state: 'open',
+                  }).catch((data) => {
+                    console.log(data)
                   })
                   github.issues.removeLabel({
                     owner: context.repo.owner,
@@ -52,7 +54,7 @@ jobs:
                     issue_number: production_pull_request.number,
                     name: 'In Progress'
                   }).catch((data) => {
-                    console.log(data.errors)
+                    console.log(data)
                   })
                 })
               }
