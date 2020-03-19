@@ -14,6 +14,7 @@ jobs:
         with:
           script: |
             const staging_pull_request = context.payload.pull_request
+            let production_pull_request = null
             github.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -22,7 +23,7 @@ jobs:
               base: 'master',
               body: staging_pull_request.body
             }).then(({ data, headers, status }) => {
-              let production_pull_request = data
+              production_pull_request = data
               github.issues.addAssignees({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -31,11 +32,28 @@ jobs:
               })
             }).catch((data) => {
               if (data.errors[0].message.startsWith('A pull request already exists')) {
-                github.issues.removeLabel({
+                github.pulls.list({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  issue_number: production_pull_request.number,
-                  name: 'In Progress'
-                });
+                  head: staging_pull_request.head.ref,
+                  base: 'master',
+                }).then(({ data, headers, status }) => {
+                  console.log(data)
+                  production_pull_request = data[0]
+                  github.pulls.update({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    pull_number: production_pull_request.number,
+                    state: 'open',
+                  })
+                  github.issues.removeLabel({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: production_pull_request.number,
+                    name: 'In Progress'
+                  }).catch((data) => {
+                    console.log(data.errors)
+                  })
+                })
               }
             })
