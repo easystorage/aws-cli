@@ -40,22 +40,16 @@ jobs:
                 }).then(({ data, headers, status }) => {
                   console.log(data)
                   production_pull_request = data[0]
-                  github.pulls.update({
-                    owner: context.repo.owner,
-                    repo: context.repo.repo,
-                    pull_number: production_pull_request.number,
-                    state: 'open',
-                  }).catch((data) => {
-                    console.log(data)
-                  })
                   github.issues.removeLabel({
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     issue_number: production_pull_request.number,
                     name: 'In Progress'
                   }).catch((data) => {
-                    console.log(data)
+                    console.log('removeLabel', data)
                   })
+                }).catch((data) => {
+                  console.log('pulls.list', data)
                 })
               }
             })
