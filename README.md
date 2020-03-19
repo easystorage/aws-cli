@@ -45,5 +45,3 @@ docker run -it -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -v "$PWD:/app" -w "
 ## Staging Branch
 
 There is a staging branch for testing Github Actions.
-
-Another line.
